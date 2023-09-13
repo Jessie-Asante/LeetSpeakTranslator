@@ -12,8 +12,8 @@ using StringConverter.Data;
 namespace StringConverter.Migrations
 {
     [DbContext(typeof(StringConverterDbContext))]
-    [Migration("20230904155824_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230912125324_Initial Nigration")]
+    partial class InitialNigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -234,7 +234,6 @@ namespace StringConverter.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("DataField")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserIDpk");
@@ -242,25 +241,15 @@ namespace StringConverter.Migrations
                     b.ToTable("TblConvertStrings");
                 });
 
-            modelBuilder.Entity("StringConverter.Models.Domain.User", b =>
+            modelBuilder.Entity("StringConverter.Models.Dto.TblConvertStringDto", b =>
                 {
-                    b.Property<int>("usaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("usaId"));
-
-                    b.Property<string>("usaName")
-                        .IsRequired()
+                    b.Property<string>("DataField")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("usaPassword")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UserIDpk")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("usaId");
-
-                    b.ToTable("Users");
+                    b.ToTable("TblConvertStringDtos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

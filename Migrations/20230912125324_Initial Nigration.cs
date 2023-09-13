@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace StringConverter.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitialNigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,29 +51,26 @@ namespace StringConverter.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TblConvertStringDtos",
+                columns: table => new
+                {
+                    UserIDpk = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DataField = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TblConvertStrings",
                 columns: table => new
                 {
                     UserIDpk = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DataField = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DataField = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TblConvertStrings", x => x.UserIDpk);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    usaId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    usaName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    usaPassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.usaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -241,10 +238,10 @@ namespace StringConverter.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "TblConvertStrings");
+                name: "TblConvertStringDtos");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "TblConvertStrings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using StringConverter.Data.Utilities;
 using StringConverter.Models.Domain;
 using StringConverter.Models.Dto;
 
@@ -21,9 +22,14 @@ namespace StringConverter.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             //modelBuilder.Entity<User>(entity => entity.HasKey(p=>p.usaId));
             modelBuilder.Entity<TblConvertString>(entity => entity.HasKey(e => e.UserIDpk));
             modelBuilder.Entity<TblConvertStringDto>().HasNoKey();
+
+            var assemblies = AssemblyHelper.GetAssemblies();
+            modelBuilder.ApplyEntities(assemblies);
+            modelBuilder.ApplyConfigurations(assemblies);
         }
        
 

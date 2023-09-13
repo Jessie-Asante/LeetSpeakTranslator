@@ -3,9 +3,10 @@ using StringConverter.Data;
 using Microsoft.AspNetCore.Identity;
 using StringConverter.Data.Interfaces;
 using StringConverter.Data.Repositories;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<StringConverterDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StringConverterConnectionString")));
+builder.Services.AddDbContext<StringConverterDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("StringConverterConnectionString"),options=>options.MigrationsAssembly(typeof(StringConverterDbContext).Assembly.GetName().Name)));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<StringConverterDbContext>();
 
