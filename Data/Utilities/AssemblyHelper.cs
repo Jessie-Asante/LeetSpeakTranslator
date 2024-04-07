@@ -17,7 +17,7 @@ namespace StringConverter.Data.Utilities
                     returnAssemblies.Add(entryAssembly);
                     assembliesToCheck.Enqueue(entryAssembly);
                 }
-
+                 
                 // Add all currently loaded assemblies to loadedAssemblies HashSet
                 foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {

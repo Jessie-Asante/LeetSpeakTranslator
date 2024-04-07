@@ -15,7 +15,7 @@ namespace StringConverter.Data.Repositories
             _context.SaveChanges();
             return add;
         }
-
+         
         public TblConvertString? Delete(TblConvertString Guid)
         {
             TblConvertString del = _context.TblConvertStrings.Find(Guid);

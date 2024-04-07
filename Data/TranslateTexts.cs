@@ -14,7 +14,7 @@ namespace StringConverter.Data
 
         public async Task<string?> TranslateText(string text)
         {
-
+              
             try
             {
                 var result = await _httpClient.GetFromJsonAsync<TranslationResult>($"https://api.funtranslations.com/translate/leetspeak.json?text={text}");

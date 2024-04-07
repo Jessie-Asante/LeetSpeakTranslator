@@ -12,7 +12,7 @@
 
             var logger =services.GetRequiredService<ILogger<StartUpService>>();
             var environment = services.GetRequiredService<IWebHostEnvironment>();
-
+             
             if (environment.IsDevelopment())
             {
                 //Ensure databse is created

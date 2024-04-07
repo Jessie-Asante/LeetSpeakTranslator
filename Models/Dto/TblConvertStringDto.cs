@@ -2,7 +2,7 @@
 {
     public class TblConvertStringDto
     {
-        public Guid UserIDpk { get; set; }
+        public Guid UserIDpk { get; set; } 
         public string? DataField { get; set; }
     }
 }

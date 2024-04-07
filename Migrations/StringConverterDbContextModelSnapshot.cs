@@ -12,7 +12,7 @@ namespace StringConverter.Migrations
 {
     [DbContext(typeof(StringConverterDbContext))]
     partial class StringConverterDbContextModelSnapshot : ModelSnapshot
-    {
+    { 
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

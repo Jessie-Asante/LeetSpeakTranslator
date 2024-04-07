@@ -17,7 +17,7 @@ namespace StringConverter.Data.Utilities
             {
                 modelBuilder.Entity(entityType);
             }
-
+             
             return modelBuilder;
         }
 
