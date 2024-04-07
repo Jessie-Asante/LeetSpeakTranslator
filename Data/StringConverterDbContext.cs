@@ -17,6 +17,7 @@ namespace StringConverter.Data
 
         public virtual DbSet<TblConvertString> TblConvertStrings { get;set; }  
         public virtual DbSet<TblConvertStringDto> TblConvertStringDtos { get;set; }  
+        public virtual DbSet<UpdateDto> UpdateDtos { get;set; }  
         //public  virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +27,7 @@ namespace StringConverter.Data
             //modelBuilder.Entity<User>(entity => entity.HasKey(p=>p.usaId));
             modelBuilder.Entity<TblConvertString>(entity => entity.HasKey(e => e.UserIDpk));
             modelBuilder.Entity<TblConvertStringDto>().HasNoKey();
+            modelBuilder.Entity<UpdateDto>().HasNoKey();
 
             var assemblies = AssemblyHelper.GetAssemblies();
             modelBuilder.ApplyEntities(assemblies);

@@ -5,6 +5,7 @@ using StringConverter.Data;
 using StringConverter.Data.Interfaces;
 using StringConverter.Data.Repositories;
 using StringConverter.Models.Domain;
+using StringConverter.Models.Dto;
 using StringConverter.Models.ViewModel;
 using System;
 using System.Net.Security;
@@ -79,9 +80,39 @@ namespace StringConverter.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateTranslator()
+        public async Task<IActionResult> UpdateTranslator(Guid Id, UpdateDto update)
         {
-            return View();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                var translatex = await _translate.TranslateText(update.DataField);
+                var query = new TblConvertString()
+                {
+                    UserIDpk = Id,
+                    DataField = translatex
+                };
+                var response = _repository.Update(query);
+                return RedirectToAction(nameof(GetText));
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("{0}",ex.Message);
+            }
+            return default;
+        }
+
+        [HttpDelete]
+
+        public async Task<IActionResult> Delete(Guid Id)
+        {
+            
+            var del =  _repository.Delete(Id);
+
+            return RedirectToAction(nameof(GetText));
         }
       
     }

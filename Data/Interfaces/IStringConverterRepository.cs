@@ -5,7 +5,7 @@ namespace StringConverter.Data.Interfaces
     public interface IStringConverterRepository
     {
         TblConvertString Add(TblConvertString add);
-        TblConvertString Delete(TblConvertString Guid);
+        bool? Delete(Guid Id);
         TblConvertString Get(int id);
         IEnumerable<TblConvertString> GetAll();
         Task<IEnumerable<TblConvertString>> GetAllAsync(FormattableString query);
