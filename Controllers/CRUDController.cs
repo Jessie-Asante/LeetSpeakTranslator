@@ -79,42 +79,43 @@ namespace StringConverter.Controllers
          
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateTranslator(Guid Id, UpdateDto update)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest();
-                }
-                var translatex = await _translate.TranslateText(update.DataField);
-                var query = new TblConvertString()
-                {
-                    UserIDpk = Id,
-                    DataField = translatex
-                };
-                var response = _repository.Update(query);
-                return RedirectToAction(nameof(GetText));
-            }
-            catch (Exception ex)
-            {
+        #region
+        //[HttpPut]
+        //public async Task<IActionResult> UpdateTranslator(Guid Id, UpdateDto update)
+        //{
+        //    try
+        //    {
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return BadRequest();
+        //        }
+        //        var translatex = await _translate.TranslateText(update.DataField);
+        //        var query = new TblConvertString()
+        //        {
+        //            UserIDpk = Id,
+        //            DataField = translatex
+        //        };
+        //        var response = _repository.Update(query);
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                Console.WriteLine("{0}",ex.Message);
-            }
-            return default;
-        }
+        //        Console.WriteLine("{0}",ex.Message);
+        //    }
+        //    return default;
+        //}
 
-        [HttpDelete]
+        //[HttpDelete]
 
-        public async Task<IActionResult> Delete(Guid Id)
-        {
+        //public async Task<IActionResult> Delete(Guid Id)
+        //{
             
-            var del =  _repository.Delete(Id);
+        //    var del =  _repository.Delete(Id);
 
-            return RedirectToAction(nameof(GetText));
-        }
-      
+        //    return Ok(del);
+        //}
+        #endregion
     }
-   
+
 }
