@@ -15,7 +15,7 @@ namespace StringConverter.Data.Utilities
 
             return otherType.IsAssignableFrom(type);
         }
-
+         
         private static bool IsAssignableToGenericTypeDefinition(this Type type, Type genericType)
         {
             foreach (var interfaceType in type.GetInterfaces())

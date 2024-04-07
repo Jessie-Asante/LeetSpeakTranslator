@@ -23,7 +23,7 @@
             }
           });
         }
-      });
+      }); 
     }
     n['default'] = e;
     return Object.freeze(n);

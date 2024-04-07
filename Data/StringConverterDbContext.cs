@@ -12,7 +12,7 @@ namespace StringConverter.Data
         public StringConverterDbContext(DbContextOptions options):base(options)
         {
 
-
+             
         }
 
         public virtual DbSet<TblConvertString> TblConvertStrings { get;set; }  
