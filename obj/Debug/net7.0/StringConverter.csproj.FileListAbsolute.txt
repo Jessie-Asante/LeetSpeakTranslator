@@ -796,3 +796,4 @@ C:\Users\Paa Kwasi\Desktop\StringTranslaterProject\StringTranslator\obj\Debug\ne
 C:\Users\Paa Kwasi\Desktop\StringTranslaterProject\StringTranslator\obj\Debug\net7.0\StringConverter.pdb
 C:\Users\Paa Kwasi\Desktop\StringTranslaterProject\StringTranslator\obj\Debug\net7.0\StringConverter.genruntimeconfig.cache
 C:\Users\Paa Kwasi\Desktop\StringTranslaterProject\StringTranslator\obj\Debug\net7.0\ref\StringConverter.dll
+C:\Users\Paa Kwasi\Desktop\StringTranslaterProject\StringTranslator\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.InMemory.dll

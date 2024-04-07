@@ -23,7 +23,7 @@ namespace StringConverter.Controllers
             _repository = repository;
             _translate = translate; 
         }
-      
+
 
         [HttpGet]
         public IActionResult Add()
@@ -32,45 +32,56 @@ namespace StringConverter.Controllers
         }
 
 
-        
+
 
         [HttpPost]
         [ActionName("Add")]
         public async Task<IActionResult?> Add(AddRequest addRequest)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var save = new TblConvertString();
-                save.DataField = await _translate.TranslateText(addRequest.InputText);
+                if (ModelState.IsValid)
+                {
+                    var translate = await _translate.TranslateText(addRequest.InputText);
+                    TblConvertString save = new TblConvertString()
+                    {
+                        DataField = translate,
+                    };
+                    _repository.Add(save);
+                    return RedirectToAction(nameof(GetText));
+                }
+                //_logger.LogInformation("Model State is Invalid");
 
-                _repository.Add(save);
-                return RedirectToAction(nameof(GetText));
+                return StatusCode(400, "Bad Request");
             }
-            else
+            catch (Exception)
             {
-                ModelState.AddModelError(string.Empty, "Text Addition Failed");
+
+                throw new ArgumentException("Error occured");
             }
-            return null;
         }
 
         [HttpGet]
 
         public async Task<IActionResult?> GetText()
         {
-            if (ModelState.IsValid)
-             {
+           
                 var getData = new GetViewModel();
                 FormattableString fetch = $"[dbo].[spcGetTranslatedText]";
                 var gets = await _repository.GetAllAsync(fetch);             
                 getData.TblConvertStrings = gets;
-
+                if (getData is null)
+                {
+                return StatusCode(400, "Not Found");
+                }
                 return View(getData);
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Failed to fetch text");
-            }
-            return null;
+         
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateTranslator()
+        {
+            return View();
         }
       
     }
