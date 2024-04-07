@@ -16,15 +16,16 @@ namespace StringConverter.Data.Repositories
             return add;
         }
          
-        public TblConvertString? Delete(TblConvertString Guid)
+        public bool? Delete(Guid Id)
         {
-            TblConvertString del = _context.TblConvertStrings.Find(Guid);
+            var del = _context.TblConvertStrings.Find(Id);
             if (del != null)
             {
                 _context.TblConvertStrings.Remove(del);
                 _context.SaveChanges();
+                return true;
             }
-            return del;
+            return false;
         }
         
         public IEnumerable<TblConvertString> GetAll()
